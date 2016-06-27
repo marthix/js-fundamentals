@@ -30,7 +30,10 @@
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Foo() {
+}
 
+var foo = new Foo()
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -51,7 +54,9 @@ console.assert(foo instanceof Foo);
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
-
+function Dog() {
+  this.says = 'life is ruff'
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -72,7 +77,13 @@ console.assert(new Dog().says === "life is ruff");
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Cat(){
+  this.growl = function() {
+    return 'meow'
+  }
+}
 
+var cat = new Cat()
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -88,15 +99,22 @@ console.assert(cat.growl() === "meow");
 
 // 4. ------------------------------------------------------------ //
 
-// Create a constructor called `Student`. The constructor should take one 
+// Create a constructor called `Student`. The constructor should take one
 // argument, which will fill that student's `expertise` attribute. The
 // student should also have a `knowledge` attribute, which has a beginning
-// value of zero. Yet another property of a student object should be the 
+// value of zero. Yet another property of a student object should be the
 // `learn` method, which will take one input: the amount of knowledge the
 // student will gain. In short, make the following assertions pass:
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Student(expertise) {
+  this.expertise = expertise
+  this.knowledge = 0
+  this.learn = function(knowledgeGained) {
+    return this.knowledge += knowledgeGained
+  }
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -106,11 +124,11 @@ console.assert(cat.growl() === "meow");
 var jasper = new Student('hydroponics')
 
 console.assert(jasper.expertise === "hydroponics")
-console.assert(jasper.knowledge === 0)  
+console.assert(jasper.knowledge === 0)
 jasper.learn(1)
 console.assert(jasper.knowledge === 1)
 jasper.learn(100)
-console.assert(jasper.knowledge === 101)  
+console.assert(jasper.knowledge === 101)
 
 // --------------------------------------------------------------- //
 /////////////////////////////////////////////////////////////////////
@@ -126,6 +144,13 @@ console.assert(jasper.knowledge === 101)
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function KeepSecret(secret) {
+  var aSecret = secret
+  this.squeal = function() {
+    return aSecret
+  }
+  return this
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -155,6 +180,18 @@ console.assert(dontTellNobody.squeal() === mySecret);
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
+function Key() {
+}
+
+function Safe(data, pKey) {
+  var safeData = data
+
+  this.unlock = function(key) {
+    if (key === pKey) {
+      return safeData
+    }
+  }
+}
 
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
@@ -191,7 +228,15 @@ console.assert(safe.unlock(rightKey) === sensitive);
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
-
+function Validator() {
+  this.email = function(string) {
+    if(string.includes('@') === true) {
+      return true
+    } else {
+      return false
+    }
+  }
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
