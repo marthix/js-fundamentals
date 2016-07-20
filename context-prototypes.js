@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 ////                                                             ////
-////    Code is in place       									 ////
+////    Code is in place       									                 ////
 ////    that validates each answer. It will currently say:       ////
 ////    `Assertion failed` for each question. Once you answer    ////
 ////    the question correctly that will go away. Use this to    ////
@@ -20,23 +20,35 @@
 // Part 0. ------------------------------------------------------------ //
 
 // Create a simple constructor called "Person" that takes one input, the
-// person's name. Add a method to the constructor's prototype called 
+// person's name. Add a method to the constructor's prototype called
 // sayMyName that will return the person's name.
 
 // The person should also have an `age` property that always starts off
-// as 0. Give the person an `.ageAYear` method that causes the person to 
-// age by a year. 
+// as 0. Give the person an `.ageAYear` method that causes the person to
+// age by a year.
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+
+function Person(name) {
+  this.age = 0
+
+  Person.prototype.sayMyName = function() {
+    return name
+  }
+
+  Person.prototype.ageAYear = function() {
+    return this.age++
+  }
+}
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
 // ==== Validating =============================================== //
 
 var jim = new Person('james')
-console.log(jim)
+
 // the following assertion just checks that you've put sayMyName on the prototype,
-// instead of just putting it in the constructor. 
+// instead of just putting it in the constructor.
 console.assert(Person.prototype.sayMyName === jim.sayMyName)
 console.assert(jim.sayMyName() === 'james')
 console.assert(jim.age === 0)
@@ -47,13 +59,15 @@ console.assert(jim.age === 1)
 
 // Part 1. ------------------------------------------------------------ //
 
-// Bind the ageAYear function on the Person prototype to the ajax object below. 
-// store the bound function in a variable called ajaxAger. 
+// Bind the ageAYear function on the Person prototype to the ajax object below.
+// store the bound function in a variable called ajaxAger.
 
 var ajax = {name: 'francis', age: 35, hometown: 'poughkeepsie'}
 var ajaxAger
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
+ajaxAger = new Person().ageAYear.bind(ajax)
+
 
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
@@ -69,18 +83,18 @@ console.assert(ajax.age === 36)
 // Part 2. ------------------------------------------------------------ //
 
 // The following object is array-like, but it doesn't
-// share all the methods of an array, such as .indexOf() and 
+// share all the methods of an array, such as .indexOf() and
 // .join(). Using the .join() method on the Array prototype and the
-// .call() method that's available on every function, join all of 
-// the fabrics into a string, separated by a space, and store the 
+// .call() method that's available on every function, join all of
+// the fabrics into a string, separated by a space, and store the
 // result into the variable `yourMansWardrobe.`
 
 
 var mensShirtFabrics = {
-	0: 'flannel', 
-	1: 'fleece', 
-	2: 'linen', 
-	3: 'cotton', 
+	0: 'flannel',
+	1: 'fleece',
+	2: 'linen',
+	3: 'cotton',
 	4: 'chambray',
 	length: 5
 }
@@ -101,8 +115,8 @@ console.assert(yourMansWardrobe === "flannel fleece linen cotton chambray")
 // Part 3. ------------------------------------------------------------ //
 
 // The following function doesn't do us much good. It makes reference
-// to `this`, but as it is, it's not inside of an object, so its 
-// `this` keyword has no useful meaning. 
+// to `this`, but as it is, it's not inside of an object, so its
+// `this` keyword has no useful meaning.
 
 var getEmail = function() {
 	var profileData = this.data
@@ -110,7 +124,7 @@ var getEmail = function() {
 	return email
 }
 
-// So, bind getEmail() to the following object and store the resulting function 
+// So, bind getEmail() to the following object and store the resulting function
 // into the variable boundEmailGetter. Then we can use boundEmailGetter
 // to log the email in our result object.
 
@@ -201,7 +215,7 @@ var record3 = {
 
 // -- ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ - Your Answer - ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ -- //
 
-LoggingService.prototype.toggleStatus.call(record1,)  
+LoggingService.prototype.toggleStatus.call(record1)
 // -- ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ -- //
 
 // ==== Validating =============================================== //
