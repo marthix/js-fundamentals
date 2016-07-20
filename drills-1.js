@@ -162,24 +162,55 @@ function addProp(object, prop, value) {
 }
 
 // write a new version of addProp() that only takes two inputs: an object, and a second object containing a single key-value pair. this key-value pair should take the place of the second and third inputs in the above problem. e.g.:
+function addProp2(object, pair) {
+  var newObject = {}
 
-	// var usrObj = {name: 'linus odoyle', age:10, email:'odoylerules@yahoo.com'}
+  Object.assign(newObject, object)
 
-	// var newObj = addProp(usrObj,{hometown:'new orleans'})
-	// newObj should look like this:
-	// {name: 'linus odoyle', age:10, email:'odoylerules@yahoo.com',hometown:'new orleans'}
-	// if i run:
-		// var newObj = addProp(newObj,{hobby:'bullying'})
-		// then newObj should contain even more data:
-		// {name: 'linus odoyle', age:10, email:'odoylerules@yahoo.com', hometown:'new orleans', hobby:'bullying'}
-
+  return Object.defineProperty(newObject, Object.keys(pair), {value: pair[Object.keys(pair)]})
+}
 
 // write a function called getKeys(). it should take as input an object, and it should return the names of all the keys (properties) of the object.
+function getKeys(object) {
+  return Object.keys(object)
+}
 
 // write a function called addPropAll(). it should take three inputs: an array of objects, a property name, and a value. it should return a new array of objects, where each object has been supplemented with the key-value pair from the input.
+function addPropAll(objects, prop, value) {
+  var newObjects = []
+
+  objects.forEach(function(object){
+    newObjects.push(Object.defineProperty(object, prop, {value: value}))
+  })
+
+  return newObjects
+}
 
 // modify addPropAll() in the same way that you modified addProp above. it should take two inptus, an array of objects and a single object containing a single key-value pair. it should return a new array of objects, where each object has been supplemented with the key-value pair from the input.
+function addPropAll2(objects, pair) {
+  var newObjects = []
+
+  objects.forEach(function(object){
+    newObjects.push(Object.defineProperty(object, Object.keys(pair), {value: pair[Object.keys(pair)]}))
+  })
+
+  return newObjects
+}
 
 // write a function called logValues() that takes two inputs: an array of objects, and a property name. for each object in the array, it should log the value stored under the given property name within that object.
+function logValues(objects, key) {
+  objects.forEach(function(object){
+    console.log('The value of the ' + key + ' property is: ' + object[key])
+  })
+}
 
 // write a function called getSpecificValues() that takes two inputs: an array of objects, and a property name. it should return an array containing the value stored under that property name for each object. for example, getSpecificValues(booksArray,'author') should return an array containing the author of every book object in the array.
+function getSpecificValues(objects, key) {
+  var valueArray = []
+
+  objects.forEach(function(object){
+    valueArray.push(object[key])
+  })
+
+  return valueArray
+}
